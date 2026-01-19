@@ -1,0 +1,5 @@
+Ciao {{nome}}
+Grazie per aver retituito il libro "{{titoloLibro}}".
+Speriamo ti sia piaciuto!
+
+A presto!

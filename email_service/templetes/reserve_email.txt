@@ -1,0 +1,3 @@
+Ciao {{nome}}
+Grazie per aver prenotato il libro "{{titoloLibro}}" per il giorno {{data}}.
+Buona lettura!
