@@ -10,7 +10,7 @@ def run_sqs_worker(shutdown_event=None):
     queue_url = os.getenv("SQS_QUEUE_URL", "")
     if queue_url == "":
         return
-    # creo client sqs
+    # creo client sqs 
     sqs = boto3.client("sqs", endpoint_url=os.getenv("AWS_ENDPOINT_URL", "http://localhost:4566"), region_name=os.getenv("AWS_DEFAULT_REGION", "us-east-1"), aws_access_key_id=os.getenv("AWS_ACCESS_KEY_ID", "test"), aws_secret_access_key=os.getenv("AWS_SECRET_ACCESS_KEY", "test"))
     while True:
         if shutdown_event != None and shutdown_event.is_set():
@@ -75,10 +75,12 @@ def run_sqs_worker(shutdown_event=None):
                     print("delete_message fallito", ex)
             # se non ok non elimino cosi riprova dopo
 
-def start_sqs_worker_background():
-    if os.getenv("SQS_QUEUE_URL", "") == "":
+
+#Avvia in backgroud un thread che consuma la coda sqs
+def star_sqs_worker_background():
+    if.os.getenv("SQS_QUEUE_URL", "") == "":
         return None
-    ev = threading.Event()
-    t = threading.Thread(target=run_sqs_worker, args=(ev,), daemon=True)
-    t.start()
-    return ev
+        ev=threading.Event()
+        t=threading.Thread(target=run_sqs_worker, args=(ev,), daemon=True)
+        t.start()
+        return ev
