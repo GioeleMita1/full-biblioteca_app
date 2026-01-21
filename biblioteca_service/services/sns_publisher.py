@@ -2,7 +2,6 @@ import json
 import os
 import boto3
 
-
 def publish_email_event(payload):
     topic_arn = os.getenv("SNS_TOPIC_ARN", "")
     if topic_arn == "":

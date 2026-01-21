@@ -77,10 +77,15 @@ def run_sqs_worker(shutdown_event=None):
 
 
 #Avvia in backgroud un thread che consuma la coda sqs
-def star_sqs_worker_background():
-    if.os.getenv("SQS_QUEUE_URL", "") == "":
+def start_sqs_worker_background():
+    if os.getenv("SQS_QUEUE_URL", "") == "":
         return None
-        ev=threading.Event()
-        t=threading.Thread(target=run_sqs_worker, args=(ev,), daemon=True)
-        t.start()
-        return ev
+
+    ev = threading.Event()
+    t = threading.Thread(
+        target=run_sqs_worker,
+        args=(ev,),
+        daemon=True
+    )
+    t.start()
+    return ev
